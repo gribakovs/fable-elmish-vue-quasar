@@ -15,18 +15,22 @@ type EventHandler =
 
 type ComponentKey = string
 
-type ComponentOptions<'Props,'State> =
-    | Components of obj
-    | El of U2<Browser.Element, string>
-    | Props of 'Props
-    | Render of (Vue.CreateElement -> VNode.VNode)
+// type ComponentOptions<'Props,'State> =
+//     | Components of obj
+//     | El of U2<Browser.Element, string>
+//     | Props of 'Props
+//     | Render of (Vue.CreateElement -> VNode.VNode)
 
 type Class = string * bool
+
+type Prop =
+    | Name of string
 
 type DataProp =
     | Style of CSSProp list
     | On of EventHandler list
     | Class of Class list
+    | Props of Prop List
 
 let inline Style (css: CSSProp list): DataProp =
     unbox ("style", JsInterop.keyValueList CaseRules.LowerFirst css)

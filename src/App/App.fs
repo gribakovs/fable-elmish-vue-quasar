@@ -19,11 +19,14 @@ let butt color text dispatch msg =
     ] [ str text ]
 
 let view model dispatch =
-    div [ Class [ "row", true; "no-wrap", true ] ] [
-        butt 0 "-" dispatch Decrease
-        h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
-        butt 120 "+" dispatch Increase
-        butt 240 "Reset" dispatch Reset
+    div [] [
+        div [ Class [ "row", true; "no-wrap", true ] ] [
+            butt 0 "-" dispatch Decrease
+            h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
+            butt 120 "+" dispatch Increase
+            butt 240 "Reset" dispatch Reset
+        ]
+        qIcon [ Props [ Name "alarm" ] ] []
     ]
 
 let update cmd model =

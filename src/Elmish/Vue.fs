@@ -17,11 +17,10 @@ do vue.``use`` quasar
 let withVue element (program:Elmish.Program<_,_,_,_>) =
     let vm: Vue.VueConstructor<Props> =
         vue.Create (
-            JsInterop.keyValueList CaseRules.LowerFirst [
-                Props { state = None }
-                U2.Case2 element |> El
-                // Components components
-                Render (fun createElement ->
+            createObj [
+                "props" ==> { state = None }
+                "el" ==> U2.Case2 element
+                "render" ==> (fun (createElement: Vue.CreateElement) ->
                     let div c = createElement.Invoke (U4.Case1 "div", c)
                     match JsInterop.jsThis<Props>.state with
                     | None -> null
