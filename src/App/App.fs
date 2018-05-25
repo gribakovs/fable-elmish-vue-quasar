@@ -12,16 +12,22 @@ let init () = { count = 1 }
 
 let butt color text dispatch msg =
     qBtn [
-        Style [ BackgroundColor color; Color "white" ]
+        Style [ sprintf "hsl(%i,40%%,60%%)" color |> BackgroundColor; Color "white"; Width "100%" ]
         On [ Click <| fun _ -> dispatch msg ]
     ] [ str text ]
 
 let view model dispatch =
-    div [] [
-        butt "blue" "-" dispatch Decrease
-        div [] [ string model.count |> str ]
-        butt "red" "+" dispatch Increase
-        butt "green" "Reset" dispatch Reset
+    div [
+        Class [
+            "row", true
+            "justify-around", true
+            "no-wrap", true
+        ]
+    ] [
+        butt 0 "-" dispatch Decrease
+        h1 [ Class [ "q-pa-xl", true ] ] [ string model.count |> str ]
+        butt 90 "+" dispatch Increase
+        butt 180 "Reset" dispatch Reset
     ]
 
 let update cmd model =
