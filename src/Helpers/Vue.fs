@@ -8,6 +8,7 @@ type VNodeThunk =
 type CSSProp =
     | Color of string
     | BackgroundColor of string
+    | Width of string
 
 type EventHandler =
     | Click of (obj -> unit)
@@ -20,9 +21,12 @@ type ComponentOptions<'Props,'State> =
     | Props of 'Props
     | Render of (Vue.CreateElement -> VNode.VNode)
 
+type Class = string * bool
+
 type DataProp =
     | Style of CSSProp list
     | On of EventHandler list
+    | Class of Class list
 
 let inline Style (css: CSSProp list): DataProp =
     unbox ("style", JsInterop.keyValueList CaseRules.LowerFirst css)
@@ -49,3 +53,9 @@ let el tag = U4.Case1 tag |> vNode
 let span = el "span"
 let div = el "div"
 let button = el "button"
+let h1 = el "h1"
+let h2 = el "h2"
+let h3 = el "h3"
+let h4 = el "h4"
+let h5 = el "h5"
+let h6 = el "h6"
