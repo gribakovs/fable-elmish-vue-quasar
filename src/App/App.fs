@@ -3,7 +3,8 @@ open Elmish
 open Elmish.Vue
 open Fable.Helpers.Vue
 open Fable.Helpers.Quasar
-open Fable.Core.JsInterop
+open Elmish.Debug
+open Elmish.HMR
 
 type Model = { count: int }
 type Msg = Decrease | Increase | Reset
@@ -21,8 +22,8 @@ let view model dispatch =
     div [ Class [ "row", true; "no-wrap", true ] ] [
         butt 0 "-" dispatch Decrease
         h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
-        butt 90 "+" dispatch Increase
-        butt 180 "Reset" dispatch Reset
+        butt 120 "+" dispatch Increase
+        butt 240 "Reset" dispatch Reset
     ]
 
 let update cmd model =
@@ -33,5 +34,9 @@ let update cmd model =
     | Reset -> { model with count = 0 }
 
 do Program.mkSimple init update view
+#if DEBUG
+    |> Program.withDebugger
+    // |> Program.withHMR
+#endif
     |> Program.withVue "#app"
     |> Program.run

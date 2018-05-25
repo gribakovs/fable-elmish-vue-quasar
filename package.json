@@ -22,6 +22,7 @@
     "html-webpack-polyfill-io-plugin": "^1.0.0",
     "quasar-extras": "^2.0.2",
     "quasar-framework": "^0.16.0",
+    "remotedev": "^0.2.7",
     "rollup": "^0.58.2",
     "rollup-plugin-fable": "^1.1.1",
     "style-loader": "^0.21.0",
