@@ -35,7 +35,7 @@ let str s = VNodeThunk <| fun _ -> U3.Case2 s
 let vNode tag (data: DataProp list) children =
     VNodeThunk <| fun createElement ->
         createElement.Invoke (
-            U4.Case1 tag,
+            tag,
             JsInterop.keyValueList CaseRules.LowerFirst data |> unbox,
             List.map
                 (fun (VNodeThunk t) -> t createElement)
@@ -45,6 +45,7 @@ let vNode tag (data: DataProp list) children =
                 |> U3.Case1
         ) |> U3.Case1
 
-let span = vNode "span"
-let div = vNode "div"
-let button = vNode "button"
+let el tag = U4.Case1 tag |> vNode
+let span = el "span"
+let div = el "div"
+let button = el "button"

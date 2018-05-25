@@ -3,19 +3,24 @@ module Elmish.Vue.Program
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Helpers.Vue
+open Fable.Helpers.Quasar
 open Fable.Import
 
 
 [<Pojo>] type Props = { state: VNodeThunk option }
 let [<Import("default","vue")>] vue: Vue.VueConstructorStatic = jsNative
 
-let withVue element (components: (string * Options.Component) list) (program:Elmish.Program<_,_,_,_>) =
+do vue.``use`` quasar
+
+// do vue.config.productionTip <- false
+
+let withVue element (program:Elmish.Program<_,_,_,_>) =
     let vm: Vue.VueConstructor<Props> =
         vue.Create (
             JsInterop.keyValueList CaseRules.LowerFirst [
-                unbox components |> createObj |> Components
                 Props { state = None }
                 U2.Case2 element |> El
+                // Components components
                 Render (fun createElement ->
                     let div c = createElement.Invoke (U4.Case1 "div", c)
                     match JsInterop.jsThis<Props>.state with

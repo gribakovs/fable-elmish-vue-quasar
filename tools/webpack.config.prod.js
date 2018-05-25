@@ -17,7 +17,5 @@ module.exports = {
     // new ExtractTextPlugin('style.css'),
     new CopyWebpackPlugin([ { from: common.config.publicDir } ])
   ]),
-  resolve: {
-    modules: [common.config.nodeModulesDir]
-  },
+  resolve: common.config.resolve
 };
