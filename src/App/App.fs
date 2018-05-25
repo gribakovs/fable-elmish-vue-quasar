@@ -14,6 +14,7 @@ let butt color text dispatch msg =
     qBtn [
         Style [ sprintf "hsl(%i,40%%,60%%)" color |> BackgroundColor; Color "white"; Width "100%" ]
         On [ Click <| fun _ -> dispatch msg ]
+        Class [ "q-ma-xl", true ]
     ] [ str text ]
 
 let view model dispatch =
@@ -25,7 +26,7 @@ let view model dispatch =
         ]
     ] [
         butt 0 "-" dispatch Decrease
-        h1 [ Class [ "q-pa-xl", true ] ] [ string model.count |> str ]
+        h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
         butt 90 "+" dispatch Increase
         butt 180 "Reset" dispatch Reset
     ]

@@ -50,12 +50,12 @@ let vNode tag (data: DataProp list) children =
         ) |> U3.Case1
 
 let el tag = U4.Case1 tag |> vNode
-let span = el "span"
-let div = el "div"
 let button = el "button"
+let div = el "div"
 let h1 = el "h1"
 let h2 = el "h2"
 let h3 = el "h3"
 let h4 = el "h4"
 let h5 = el "h5"
 let h6 = el "h6"
+let span = el "span"
