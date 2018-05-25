@@ -393,7 +393,7 @@ module Vue =
     type VNodeData = VNode.VNodeData
     type VNodeChildren = VNode.VNodeChildren
     // type ScopedSlot = __vnode.ScopedSlot
-    // type PluginFunction = __plugin.PluginFunction
+    type PluginFunction = __plugin.PluginFunction
     // type PluginObject = __plugin.PluginObject
 
     // type [<AllowNullLiteral>] IExports =

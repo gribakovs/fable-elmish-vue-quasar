@@ -5,13 +5,15 @@ open Fable.Core.JsInterop
 open Fable.Helpers.Vue
 open Fable.Import
 
+
 [<Pojo>] type Props = { state: VNodeThunk option }
 let [<Import("default","vue")>] vue: Vue.VueConstructorStatic = jsNative
 
-let withVue element (program:Elmish.Program<_,_,_,_>) =
+let withVue element (components: (string * Options.Component) list) (program:Elmish.Program<_,_,_,_>) =
     let vm: Vue.VueConstructor<Props> =
         vue.Create (
             JsInterop.keyValueList CaseRules.LowerFirst [
+                unbox components |> createObj |> Components
                 Props { state = None }
                 U2.Case2 element |> El
                 Render (fun createElement ->

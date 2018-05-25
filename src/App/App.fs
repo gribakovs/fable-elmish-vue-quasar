@@ -29,5 +29,5 @@ let update cmd model =
     | Reset -> { model with count = 0 }
 
 do Program.mkSimple init update view
-    |> Program.withVue "#app"
+    |> Program.withVue "#app" []
     |> Program.run

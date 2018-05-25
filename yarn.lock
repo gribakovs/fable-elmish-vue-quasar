@@ -3124,6 +3124,10 @@ qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
+quasar-framework@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/quasar-framework/-/quasar-framework-0.16.0.tgz#0719567eed16f3830fa852eddfc35acddfd7570e"
+
 querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
