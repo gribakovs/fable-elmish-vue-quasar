@@ -10,7 +10,11 @@ open Fable.Import
 [<Pojo>] type Props = { state: VNodeThunk option }
 let [<Import("default","vue")>] vue: Vue.VueConstructorStatic = jsNative
 
-do vue.``use`` quasar
+do vue.``use`` (
+    quasar,
+    createObj [ "plugins" ==> createObj [ "Notify" ==> notify ] ]
+)
+
 
 // do vue.config.productionTip <- false
 

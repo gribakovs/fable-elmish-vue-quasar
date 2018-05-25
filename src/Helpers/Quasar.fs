@@ -18,3 +18,7 @@ let [<Import("QBtn","quasar")>] QBtn: Component = jsNative
 let qBtn = el QBtn
 let [<Import("QIcon","quasar")>] QIcon: Component = jsNative
 let qIcon = el QIcon
+
+type INotify =
+    abstract create: string -> unit
+let [<Import("Notify","quasar")>] notify: INotify = jsNative
