@@ -18,13 +18,7 @@ let butt color text dispatch msg =
     ] [ str text ]
 
 let view model dispatch =
-    div [
-        Class [
-            "row", true
-            "justify-around", true
-            "no-wrap", true
-        ]
-    ] [
+    div [ Class [ "row", true; "no-wrap", true ] ] [
         butt 0 "-" dispatch Decrease
         h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
         butt 90 "+" dispatch Increase
