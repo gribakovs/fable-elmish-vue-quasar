@@ -12,7 +12,10 @@ type CSSProp =
 type EventHandler =
     | Click of (obj -> unit)
 
+type ComponentKey = string
+
 type ComponentOptions<'Props,'State> =
+    | Components of obj
     | El of U2<Browser.Element, string>
     | Props of 'Props
     | Render of (Vue.CreateElement -> VNode.VNode)
