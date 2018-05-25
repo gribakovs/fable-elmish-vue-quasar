@@ -2,13 +2,16 @@ module App.Main
 open Elmish
 open Elmish.Vue
 open Fable.Helpers.Vue
+open Fable.Helpers.Quasar
+open Fable.Core.JsInterop
 
 type Model = { count: int }
 type Msg = Decrease | Increase | Reset
+
 let init () = { count = 1 }
 
 let butt color text dispatch msg =
-    button [
+    qBtn [
         Style [ BackgroundColor color; Color "white" ]
         On [ Click <| fun _ -> dispatch msg ]
     ] [ str text ]
@@ -29,5 +32,5 @@ let update cmd model =
     | Reset -> { model with count = 0 }
 
 do Program.mkSimple init update view
-    |> Program.withVue "#app" []
+    |> Program.withVue "#app"
     |> Program.run

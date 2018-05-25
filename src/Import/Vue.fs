@@ -393,7 +393,7 @@ module Vue =
     type VNodeData = VNode.VNodeData
     type VNodeChildren = VNode.VNodeChildren
     // type ScopedSlot = __vnode.ScopedSlot
-    type PluginFunction = __plugin.PluginFunction
+    // type PluginFunction = __plugin.PluginFunction
     // type PluginObject = __plugin.PluginObject
 
     // type [<AllowNullLiteral>] IExports =
@@ -441,16 +441,16 @@ module Vue =
     // type ExtendedVue<'Instance, 'Data, 'Methods, 'Computed, 'Props> =
     //     VueConstructor<obj>
 
-    // type [<AllowNullLiteral>] VueConfiguration =
-    //     abstract silent: bool with get, set
-    //     abstract optionMergeStrategies: obj option with get, set
-    //     abstract devtools: bool with get, set
-    //     abstract productionTip: bool with get, set
-    //     abstract performance: bool with get, set
-    //     abstract errorHandler: err: Error * vm: Vue * info: string -> unit
-    //     abstract warnHandler: msg: string * vm: Vue * trace: string -> unit
-    //     abstract ignoredElements: ResizeArray<U2<string, RegExp>> with get, set
-    //     abstract keyCodes: obj with get, set
+    type [<AllowNullLiteral>] VueConfiguration =
+        abstract silent: bool with get, set
+        abstract optionMergeStrategies: obj option with get, set
+        abstract devtools: bool with get, set
+        abstract productionTip: bool with get, set
+        abstract performance: bool with get, set
+        abstract errorHandler: err: Error * vm: Vue * info: string -> unit
+        abstract warnHandler: msg: string * vm: Vue * trace: string -> unit
+        abstract ignoredElements: ResizeArray<U2<string, RegExp>> with get, set
+        abstract keyCodes: obj with get, set
 
     type VueConstructor =
         VueConstructor<obj>
@@ -488,3 +488,4 @@ module Vue =
         // [<Emit "new $0($1...)">] abstract Create: ?options: Options.ThisTypedComponentOptionsWithRecordProps<'V, 'Data, 'Methods, 'Computed, 'Props> -> VueConstructor<'V>
         [<Emit "new $0($1...)">] abstract Create: ?options: Options.ComponentOptions<'V> -> VueConstructor<'V>
         abstract ``use``: plugin: U2<Plugin.PluginObject<'T>, Plugin.PluginFunction<'T>> * ?options: 'T -> unit
+        abstract config: VueConfiguration with get, set

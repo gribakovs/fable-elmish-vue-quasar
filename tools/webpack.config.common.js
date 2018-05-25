@@ -7,13 +7,21 @@ var HtmlWebpackPolyfillIOPlugin = require('html-webpack-polyfill-io-plugin');
 
 var packageJson = JSON.parse(fs.readFileSync(resolve('../package.json')).toString());
 var errorMsg = "{0} missing in package.json";
-
+const theme = "mat"
 var config = {
   entry: resolve(path.join("..", forceGet(packageJson, "fable.entry", errorMsg))),
   publicDir: resolve("../public"),
   buildDir: resolve("../build"),
-  nodeModulesDir: resolve("../node_modules"),
-  indexHtmlTemplate: resolve("../src/index.html")
+  indexHtmlTemplate: resolve("../src/index.html"),
+  resolve: {
+    modules: [resolve("../node_modules")],
+    alias: {
+      quasar: resolve(`../node_modules/quasar-framework/dist/quasar.${theme}.esm.js`),
+      variables: resolve(`src/styles/quasar.variables.styl`),
+      "quasar-variables": resolve(`../node_modules/quasar-framework/dist/core.variables.styl`),
+      "quasar-styl": resolve(`../node_modules/quasar-framework/dist/quasar.${theme}.styl`)
+    }
+  },
 }
 
 function resolve(filePath) {
@@ -57,6 +65,14 @@ function getModuleRules(isProduction) {
         loader: 'babel-loader',
         options: babelOptions
       },
+    },
+    {
+      test: /\.styl$/,
+      loader: 'style-loader!css-loader!stylus-loader'
+    },
+    {
+      test: /\.css$/,
+      use: [ 'style-loader', 'css-loader' ]
     }
   ];
 }
