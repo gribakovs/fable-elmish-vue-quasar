@@ -6,7 +6,7 @@ type Model = { count: int; total: int }
 type Msg = Decrease | Increase | Reset
 let init () = { count = 0; total = 0 }
 
-let butt color text dispatch msg =
+let private butt color text dispatch msg =
     qBtn [
         Style [
             sprintf "hsl(%i,40%%,60%%)" color |> BackgroundColor

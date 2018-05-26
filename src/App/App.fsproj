@@ -7,6 +7,7 @@
     <ProjectReference Include="../Helpers/Helpers.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.fs" />
     <Compile Include="Counter.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
