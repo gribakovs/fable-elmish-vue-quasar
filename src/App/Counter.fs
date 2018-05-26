@@ -10,7 +10,7 @@ let private butt color text dispatch msg =
     qBtn [
         Style [
             sprintf "hsl(%i,40%%,60%%)" color |> BackgroundColor
-            Color "white"
+            CSSProp.Color "white"
             Width "100%"
         ]
         On [ Click <| fun _ -> dispatch msg ]
