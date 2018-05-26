@@ -64,7 +64,7 @@ let update cmd model =
     match cmd with
     | Decrease -> count (-)
     | Increase -> count (+)
-    | Reset -> { model with count = 0 }
+    | Reset -> { model with count = 0; total = 0 }
 
 do Program.mkSimple init update view
 #if DEBUG
