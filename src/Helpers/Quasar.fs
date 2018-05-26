@@ -18,6 +18,16 @@ let [<Import("QBtn","quasar")>] QBtn: Component = jsNative
 let qBtn = el QBtn
 let [<Import("QIcon","quasar")>] QIcon: Component = jsNative
 let qIcon = el QIcon
+let [<Import("QLayout","quasar")>] QLayout: Component = jsNative
+let qLayout = el QLayout
+let [<Import("QLayoutHeader","quasar")>] QLayoutHeader: Component = jsNative
+let qLayoutHeader = el QLayoutHeader
+let [<Import("QPageContainer","quasar")>] QPageContainer: Component = jsNative
+let qPageContainer = el QPageContainer
+let [<Import("QToolbar","quasar")>] QToolbar: Component = jsNative
+let qToolbar = el QToolbar
+let [<Import("QToolbarTitle","quasar")>] QToolbarTitle: Component = jsNative
+let qToolbarTitle = el QToolbarTitle
 
 type INotify =
     abstract create: string -> unit

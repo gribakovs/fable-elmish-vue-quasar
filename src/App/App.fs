@@ -12,22 +12,25 @@ type Msg = Counter of Counter.Msg | ChangePage of Page
 let init () = { page = About; counter = Counter.init () }
 
 let btn page dispatch =
-    qBtn [ On [ Click <| fun _ -> ChangePage page |> dispatch ] ]
-        [ string page |> str ]
+    qBtn [
+        Props [ Flat true ]
+        On [ Click <| fun _ -> ChangePage page |> dispatch ]
+    ] [ string page |> str ]
 
 let view model dispatch =
     let page = function
         | About -> About.view
         | Page.Counter ->
             Counter.view model.counter (Counter >> dispatch)
-    div [] [
-        div [
-            Class
-              [ "q-pa-xl", true; "row", true; "justify-around", true ]
-        ] [ btn Page.About dispatch
-            btn Page.Counter dispatch
+    qLayout [] [
+        qLayoutHeader [] [
+            qToolbar [] [
+                qToolbarTitle [] [ string model.page |> str ]
+                btn Page.About dispatch
+                btn Page.Counter dispatch
+            ]
         ]
-        page model.page
+        qPageContainer [] [ page model.page ]
     ]
 
 let update msg model =

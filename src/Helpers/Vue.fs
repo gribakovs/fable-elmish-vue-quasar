@@ -25,6 +25,7 @@ type Class = string * bool
 
 type Prop =
     | Name of string
+    | Flat of bool
 
 type DataProp =
     | Style of CSSProp list
