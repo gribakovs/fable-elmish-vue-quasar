@@ -30,6 +30,14 @@ let [<Import("QToolbarTitle","quasar")>] QToolbarTitle: Component = jsNative
 let qToolbarTitle = el QToolbarTitle
 let [<Import("QLayoutDrawer","quasar")>] QLayoutDrawer: Component = jsNative
 let qLayoutDrawer = el QLayoutDrawer
+let [<Import("QList","quasar")>] QList: Component = jsNative
+let qList = el QList
+let [<Import("QListHeader","quasar")>] QListHeader: Component = jsNative
+let qListHeader = el QListHeader
+let [<Import("QItem","quasar")>] QItem: Component = jsNative
+let qItem = el QItem
+let [<Import("QSearch","quasar")>] QSearch: Component = jsNative
+let qSearch = el QSearch
 
 type INotify =
     abstract create: string -> unit

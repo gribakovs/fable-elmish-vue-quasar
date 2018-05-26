@@ -38,14 +38,17 @@ let view model dispatch =
                 qToolbarTitle [] [ string model.page |> str ]
                 btn Page.About dispatch
                 btn Page.Counter dispatch
+                qSearch [ Props [ Inverted; Prop.Color "none" ] ] []
             ]
         ]
         qLayoutDrawer [
             Props [ Value model.showLeft ]
             On  [ Input (unbox >> SetLeft >> dispatch) ]
-        ] [ qToolbar [] [ qToolbarTitle [] [ str "Left drawer" ] ]
-            btn Page.About dispatch
-            btn Page.Counter dispatch
+        ] [ qList [ Props [ ``No-border``; ``Inset-separator`` ] ] [
+                qListHeader [] [ str "Left drawer" ]
+                qItem [] [ str "About" ]
+                qItem [] [ str "Counter" ]
+            ]
         ]
         qPageContainer [] [ page model.page ]
     ]
