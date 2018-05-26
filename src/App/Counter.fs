@@ -14,16 +14,20 @@ let private butt color text dispatch msg =
             Width "100%"
         ]
         On [ Click <| fun _ -> dispatch msg ]
-        Class [ "q-ma-xl", true ]
     ] [ str text ]
 
+let private number num =
+    div [ Class [ "q-pa-xl", true ] ] [ string num |> str ]
+
 let view model dispatch =
-    div [] [
-        div [ Class [ "row", true; "no-wrap", true ] ] [
-            butt 0 "-" dispatch Decrease
-            h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
+    div [ Class [ "q-pa-xl", true ] ] [
+        div [
+            Class
+              [ "row", true; "no-wrap", true; "items-center", true ]
+        ] [ butt 0 "-" dispatch Decrease
+            number model.count
             butt 120 "+" dispatch Increase
-            h1 [ Class [ "q-ma-xl", true ] ] [ string model.total |> str ]
+            number model.total
             butt 240 "Reset" dispatch Reset
         ]
         [ "alarm"; "cloud"; "thumb_up"; "mail"; "map" ]
@@ -34,13 +38,9 @@ let view model dispatch =
                 ] []
             )
             |> div [ Class [ "row", true; "justify-around", true ] ]
-        qBtn [
-            Class [ "q-ma-xl", true ]
-            On [ Click <| fun _ ->
-                // do !!jsThis?``$q``?create "Clicked!"
-                notify.create "Clicked!"
-            ]
-        ] [ str "Notify" ]
+        br []
+        qBtn [ On [ Click <| fun _ -> notify.create "Clicked!" ] ]
+            [ str "Notify" ]
     ]
 
 let update cmd model =

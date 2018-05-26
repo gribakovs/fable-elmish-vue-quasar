@@ -63,3 +63,4 @@ let h4 = el "h4"
 let h5 = el "h5"
 let h6 = el "h6"
 let span = el "span"
+let br b = el "br" b []

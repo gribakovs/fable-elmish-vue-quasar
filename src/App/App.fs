@@ -21,8 +21,10 @@ let view model dispatch =
         | Page.Counter ->
             Counter.view model.counter (Counter >> dispatch)
     div [] [
-        div [ Class [ "q-pa-xl", true; "row", true; "justify-around", true ] ] [
-            btn Page.About dispatch
+        div [
+            Class
+              [ "q-pa-xl", true; "row", true; "justify-around", true ]
+        ] [ btn Page.About dispatch
             btn Page.Counter dispatch
         ]
         page model.page
