@@ -12,6 +12,7 @@ type CSSProp =
 
 type EventHandler =
     | Click of (obj -> unit)
+    | Input of (obj -> unit)
 
 type ComponentKey = string
 
@@ -24,14 +25,20 @@ type ComponentKey = string
 type Class = string * bool
 
 type Prop =
-    | Name of string
+    | Dense of bool
     | Flat of bool
+    | Icon of string
+    | Name of string
+    | View of string
+    | Round of bool
+    | Value of bool
 
 type DataProp =
     | Style of CSSProp list
     | On of EventHandler list
     | Class of Class list
     | Props of Prop List
+    | DomProps of Prop List
 
 let inline Style (css: CSSProp list): DataProp =
     unbox ("style", JsInterop.keyValueList CaseRules.LowerFirst css)

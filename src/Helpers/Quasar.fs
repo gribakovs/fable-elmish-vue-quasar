@@ -28,6 +28,8 @@ let [<Import("QToolbar","quasar")>] QToolbar: Component = jsNative
 let qToolbar = el QToolbar
 let [<Import("QToolbarTitle","quasar")>] QToolbarTitle: Component = jsNative
 let qToolbarTitle = el QToolbarTitle
+let [<Import("QLayoutDrawer","quasar")>] QLayoutDrawer: Component = jsNative
+let qLayoutDrawer = el QLayoutDrawer
 
 type INotify =
     abstract create: string -> unit

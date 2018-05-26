@@ -7,14 +7,16 @@ open Fable.Helpers.Quasar
 open Fable.Helpers.Vue
 
 type Page = About | Counter
-type Model = { page: Page; counter: Counter.Model }
-type Msg = Counter of Counter.Msg | ChangePage of Page
-let init () = { page = About; counter = Counter.init () }
+type Model = { showLeft: bool; page: Page; counter: Counter.Model }
+type Msg = SetLeft of bool | Counter of Counter.Msg | SetPage of Page
+
+let init () =
+    { showLeft = true; page = About; counter = Counter.init () }
 
 let btn page dispatch =
     qBtn [
         Props [ Flat true ]
-        On [ Click <| fun _ -> ChangePage page |> dispatch ]
+        On [ Click <| fun _ -> SetPage page |> dispatch ]
     ] [ string page |> str ]
 
 let view model dispatch =
@@ -22,22 +24,38 @@ let view model dispatch =
         | About -> About.view
         | Page.Counter ->
             Counter.view model.counter (Counter >> dispatch)
-    qLayout [] [
+    qLayout [ Props [ View "lHr lpr lFr" ] ] [
         qLayoutHeader [] [
             qToolbar [] [
+                qBtn [
+                    Props [
+                        Flat true; Round true; Dense true; Icon "menu"
+                    ]
+                    On [ Click <| fun _ ->
+                        not model.showLeft |> SetLeft |> dispatch
+                    ]
+                ] []
                 qToolbarTitle [] [ string model.page |> str ]
                 btn Page.About dispatch
                 btn Page.Counter dispatch
             ]
+        ]
+        qLayoutDrawer [
+            Props [ Value model.showLeft ]
+            On  [ Input (unbox >> SetLeft >> dispatch) ]
+        ] [ qToolbar [] [ qToolbarTitle [] [ str "Left drawer" ] ]
+            btn Page.About dispatch
+            btn Page.Counter dispatch
         ]
         qPageContainer [] [ page model.page ]
     ]
 
 let update msg model =
     match msg with
+    | SetLeft showLeft -> { model with showLeft = showLeft }
     | Counter msg ->
         { model with counter = Counter.update msg model.counter }
-    | ChangePage page -> { model with page = page }
+    | SetPage page -> { model with page = page }
 
 do Program.mkSimple init update view
 #if DEBUG
