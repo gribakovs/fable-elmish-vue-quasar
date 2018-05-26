@@ -7,10 +7,16 @@ open Fable.Helpers.Quasar
 open Fable.Helpers.Vue
 open Fable.Core.JsInterop
 
-type Model = { count: int }
+type Model = {
+    count: int
+    total: int
+}
 type Msg = Decrease | Increase | Reset
 
-let init () = { count = 1 }
+let init () = {
+    count = 0
+    total = 0
+}
 
 let butt color text dispatch msg =
     qBtn [
@@ -29,6 +35,7 @@ let view model dispatch =
             butt 0 "-" dispatch Decrease
             h1 [ Class [ "q-ma-xl", true ] ] [ string model.count |> str ]
             butt 120 "+" dispatch Increase
+            h1 [ Class [ "q-ma-xl", true ] ] [ string model.total |> str ]
             butt 240 "Reset" dispatch Reset
         ]
         [ "alarm"; "cloud"; "thumb_up"; "mail"; "map" ]
@@ -49,7 +56,11 @@ let view model dispatch =
     ]
 
 let update cmd model =
-    let count f = { model with count = f model.count 1 }
+    let count f = {
+        model with
+            count = f model.count 1
+            total = model.total + 1
+    }
     match cmd with
     | Decrease -> count (-)
     | Increase -> count (+)

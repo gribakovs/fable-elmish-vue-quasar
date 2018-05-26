@@ -477,11 +477,12 @@ module Vue =
     //     abstract ``component``: id: string * definition: FunctionalComponentOptions<Record<'PropNames, obj option>, ResizeArray<'PropNames>> -> ExtendedVue<'V, obj, obj, obj, Record<'PropNames, obj option>>
     //     abstract ``component``: id: string * definition: FunctionalComponentOptions<'Props, RecordPropsDefinition<'Props>> -> ExtendedVue<'V, obj, obj, obj, 'Props>
     //     abstract ``component``: id: string * ?definition: ComponentOptions<'V> -> ExtendedVue<'V, obj, obj, obj, obj>
-        abstract ``use``: plugin: U2<Plugin.PluginObject<'T>, Plugin.PluginFunction<'T>> * ?options: 'T -> unit
-        abstract ``use``: plugin: U2<Plugin.PluginObject<obj option>, Plugin.PluginFunction<obj option>> * [<ParamArray>] options: ResizeArray<obj option> -> unit
+    //     abstract ``use``: plugin: U2<Plugin.PluginObject<'T>, Plugin.PluginFunction<'T>> * ?options: 'T -> unit
+    //     abstract ``use``: plugin: U2<Plugin.PluginObject<obj option>, Plugin.PluginFunction<obj option>> * [<ParamArray>] options: ResizeArray<obj option> -> unit
     //     abstract ``mixin``: ``mixin``: U2<VueConstructor, ComponentOptions<Vue>> -> unit
     //     abstract compile: template: string -> obj
     //     abstract config: VueConfiguration with get, set
+        interface end
 
     type [<AllowNullLiteral>] VueConstructorStatic =
         // [<Emit "new $0($1...)">] abstract Create: ?options: Options.ThisTypedComponentOptionsWithArrayProps<'V, 'Data, 'Methods, 'Computed, 'PropNames> -> VueConstructor<'V>
