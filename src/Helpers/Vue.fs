@@ -9,6 +9,7 @@ type CSSProp =
     | Color of string
     | BackgroundColor of string
     | Width of string
+    | TextAlign of string
 
 type EventHandler =
     | Click of (obj -> unit)
@@ -34,8 +35,8 @@ type Prop =
     | Value of bool
     | Inverted of bool
     | Color of string
-    | ``No-border`` of bool
-    | ``Inset-separator`` of bool
+    | NoBorder of bool
+    | InsetSeparator of bool
     | Side of string
 
 type DataProp =

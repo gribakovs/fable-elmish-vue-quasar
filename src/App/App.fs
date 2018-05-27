@@ -48,7 +48,7 @@ let view model dispatch =
             Props [ Value model.showLeft ]
             On  [ Input (unbox >> SetLeft >> dispatch) ]
         ] [ qList [
-                Props [ ``No-border`` true; ``Inset-separator`` true ]
+                Props [ NoBorder true; InsetSeparator true ]
             ] [ qListHeader [] [ str "Left drawer" ]
                 qItem [] [ str "About" ]
                 qItem [] [ str "Counter" ]

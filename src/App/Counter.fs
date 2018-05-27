@@ -52,7 +52,7 @@ let view model dispatch =
         ]
         qLayoutDrawer [ Props [ Side "right"; Value true ] ] [
             qList [
-                Props [ ``No-border`` true; ``Inset-separator`` true ]
+                Props [ NoBorder true; InsetSeparator true ]
             ] [ qListHeader [] [ str "Counter's drawer" ]
                 qItem [] [ str "About" ]
                 qItem [] [ str "Counter" ]
