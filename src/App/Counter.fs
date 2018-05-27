@@ -22,10 +22,11 @@ let private number num =
 let view model dispatch =
     div [] [
         qPageContainer [] [
-            div [ Class [ "q-pa-lg", true ] ] [
-                div [
+            div [
+                Style [ BackgroundColor "#fff" ]
+                Class [ "shadow-1", true; "q-ma-lg", true; "q-pa-lg", true ]
+            ] [ div [
                     Class [
-
                         "row", true
                         "no-wrap", true
                         "items-center", true

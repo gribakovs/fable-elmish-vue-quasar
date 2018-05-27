@@ -7,11 +7,11 @@ let view =
         qPageContainer [] [
             div [
                 Style [ BackgroundColor "#fff" ]
-                Class [ "shadow-1", true; "q-ma-lg", true ]
-            ] [ h1 [
-                    Style [ TextAlign "center" ]
-                    Class [ "q-ma-lg", true ]
-                ] [ str "Fable Elmish Vue Quasar Demo" ]
+                Class [
+                    "shadow-1", true; "q-ma-lg", true; "q-pa-lg", true
+                ]
+            ] [ h1 [ Style [ TextAlign "center" ] ]
+                    [ str "Fable Elmish Vue Quasar Demo" ]
             ]
         ]
         qLayoutDrawer [ Props [ Side "right"; Value true ] ] [
