@@ -36,6 +36,7 @@ type Prop =
     | Color of string
     | ``No-border`` of bool
     | ``Inset-separator`` of bool
+    | Side of string
 
 type DataProp =
     | Style of CSSProp list

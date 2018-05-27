@@ -3,6 +3,7 @@ open Elmish
 open Elmish.Debug
 open Elmish.HMR
 open Elmish.Vue
+open Fable.Core
 open Fable.Helpers.Quasar
 open Fable.Helpers.Vue
 
@@ -10,6 +11,7 @@ type Page = About | Counter
 type Model = { showLeft: bool; page: Page; counter: Counter.Model }
 type Msg = SetLeft of bool | Counter of Counter.Msg | SetPage of Page
 
+do JsInterop.importAll "./styles/app.styl"
 let init () =
     { showLeft = true; page = About; counter = Counter.init () }
 
@@ -24,7 +26,7 @@ let view model dispatch =
         | About -> About.view
         | Page.Counter ->
             Counter.view model.counter (Counter >> dispatch)
-    qLayout [ Props [ View "lHr lpr lFr" ] ] [
+    qLayout [ Props [ View "lHh lpr lFf" ] ] [
         qLayoutHeader [] [
             qToolbar [] [
                 qBtn [
@@ -52,7 +54,7 @@ let view model dispatch =
                 qItem [] [ str "Counter" ]
             ]
         ]
-        qPageContainer [] [ page model.page ]
+        page model.page
     ]
 
 let update msg model =
