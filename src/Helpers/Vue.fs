@@ -32,10 +32,10 @@ type Prop =
     | View of string
     | Round of bool
     | Value of bool
-    | Inverted
+    | Inverted of bool
     | Color of string
-    | ``No-border``
-    | ``Inset-separator``
+    | ``No-border`` of bool
+    | ``Inset-separator`` of bool
 
 type DataProp =
     | Style of CSSProp list
