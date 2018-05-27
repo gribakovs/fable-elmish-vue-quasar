@@ -17,18 +17,18 @@ let private butt color text dispatch msg =
     ] [ str text ]
 
 let private number num =
-    div [ Class [ "q-pa-xl", true ] ] [ string num |> str ]
+    div [ Class [ "q-pa-lg", true ] ] [ string num |> str ]
 
 let view model dispatch =
-    div [ Class [ "q-pa-xl", true ] ] [
+    div [ Class [ "q-pa-lg", true ] ] [
         div [
             Class
               [ "row", true; "no-wrap", true; "items-center", true ]
         ] [ butt 0 "-" dispatch Decrease
             number model.count
-            butt 120 "+" dispatch Increase
+            butt 90 "+" dispatch Increase
             number model.total
-            butt 240 "Reset" dispatch Reset
+            butt 180 "Reset" dispatch Reset
         ]
         [ "alarm"; "cloud"; "thumb_up"; "mail"; "map" ]
             |> List.map (fun name ->
@@ -37,10 +37,9 @@ let view model dispatch =
                     Style [ unbox ("font-size", "48px") ]
                 ] []
             )
-            |> div [ Class [ "row", true; "justify-around", true ] ]
+            |> div [ Class [ "row", true; "justify-between", true ] ]
         br []
-        qBtn [ On [ Click <| fun _ -> notify.create "Clicked!" ] ]
-            [ str "Notify" ]
+        butt 270 "Notify" notify.create "Clicked!"
     ]
 
 let update cmd model =
