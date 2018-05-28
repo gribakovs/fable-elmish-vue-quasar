@@ -12,6 +12,7 @@ type Model = { showLeft: bool; page: Page; counter: Counter.Model }
 type Msg = SetLeft of bool | Counter of Counter.Msg | SetPage of Page
 
 do JsInterop.importAll "./styles/app.styl"
+
 let init () =
     { showLeft = true; page = About; counter = Counter.init () }
 
@@ -31,8 +32,10 @@ let view model dispatch =
         | About -> About.view
         | Page.Counter ->
             Counter.view model.counter (Counter >> dispatch)
-    qLayout [ Props [ View "lHh lpr lFf" ] ] [
-        qLayoutHeader [] [
+    qLayout [
+        Attrs [ Id "app" ] // WORKAROUND
+        Props [ View "lHR LpR lFf" ]
+    ] [ qLayoutHeader [] [
             qToolbar [] [
                 qBtn [
                     Props [
@@ -72,8 +75,8 @@ let update msg model =
 
 do Program.mkSimple init update view
 #if DEBUG
+    |> Program.withHMR // doesn't
     |> Program.withDebugger
-    // |> Program.withHMR // doesn't
 #endif
     |> Program.withVue "#app"
     |> Program.run

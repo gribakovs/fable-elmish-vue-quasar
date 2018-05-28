@@ -8,7 +8,7 @@ let view =
             div [
                 Style [ BackgroundColor "#fff" ]
                 Class [
-                    "shadow-1", true; "q-ma-lg", true; "q-pa-lg", true
+                    "shadow-5", true; "q-ma-lg", true; "q-pa-lg", true
                 ]
             ] [ h1 [ Style [ TextAlign "center" ] ]
                     [ str "Fable Elmish Vue Quasar Demo" ]

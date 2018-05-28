@@ -25,6 +25,9 @@ type ComponentKey = string
 
 type Class = string * bool
 
+type Attr =
+    | Id of string
+
 type Prop =
     | Dense of bool
     | Flat of bool
@@ -47,6 +50,7 @@ type DataProp =
     | On of EventHandler list
     | Class of Class list
     | Props of Prop List
+    | Attrs of Attr List
     | DomProps of Prop List
 
 let inline Style (css: CSSProp list): DataProp =

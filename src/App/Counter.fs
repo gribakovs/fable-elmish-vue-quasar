@@ -25,7 +25,7 @@ let view model dispatch =
             // qToolbar [] [ qToolbarTitle [] [ str "Toolbar" ] ]
             div [
                 Style [ BackgroundColor "#fff" ]
-                Class [ "shadow-1", true; "q-ma-lg", true; "q-pa-lg", true ]
+                Class [ "shadow-5", true; "q-ma-lg", true; "q-pa-lg", true ]
             ] [ div [
                     Class [
                         "row", true
