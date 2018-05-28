@@ -36,6 +36,10 @@ let [<Import("QListHeader","quasar")>] QListHeader: Component = jsNative
 let qListHeader = el QListHeader
 let [<Import("QItem","quasar")>] QItem: Component = jsNative
 let qItem = el QItem
+let [<Import("QItemSide","quasar")>] QItemSide: Component = jsNative
+let qItemSide = el QItemSide
+let [<Import("QItemMain","quasar")>] QItemMain: Component = jsNative
+let qItemMain = el QItemMain
 let [<Import("QSearch","quasar")>] QSearch: Component = jsNative
 let qSearch = el QSearch
 

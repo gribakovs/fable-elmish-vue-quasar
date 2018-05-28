@@ -22,6 +22,7 @@ let private number num =
 let view model dispatch =
     div [] [
         qPageContainer [] [
+            // qToolbar [] [ qToolbarTitle [] [ str "Toolbar" ] ]
             div [
                 Style [ BackgroundColor "#fff" ]
                 Class [ "shadow-1", true; "q-ma-lg", true; "q-pa-lg", true ]
@@ -50,13 +51,13 @@ let view model dispatch =
                 br []
                 butt 270 "Notify" notify.create "Clicked!"
             ]
-        ]
-        qLayoutDrawer [ Props [ Side "right"; Value true ] ] [
-            qList [
-                Props [ NoBorder true; InsetSeparator true ]
-            ] [ qListHeader [] [ str "Counter's drawer" ]
-                qItem [] [ str "About" ]
-                qItem [] [ str "Counter" ]
+            qLayoutDrawer [ Props [ Side "right"; Value true ] ] [
+                qList [
+                    Props [ NoBorder true; InsetSeparator true ]
+                ] [ qListHeader [] [ str "Counter's drawer" ]
+                    qItem [] [ str "About" ]
+                    qItem [] [ str "Counter" ]
+                ]
             ]
         ]
     ]

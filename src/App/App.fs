@@ -22,6 +22,11 @@ let btn page dispatch =
     ] [ string page |> str ]
 
 let view model dispatch =
+    let menuItem letter page =
+        qItem [ On [ Click <| fun _ -> SetPage page |> dispatch ] ] [
+            qItemSide [ Props [ Letter letter ] ] []
+            string page |> str
+        ]
     let page = function
         | About -> About.view
         | Page.Counter ->
@@ -48,10 +53,11 @@ let view model dispatch =
             Props [ Value model.showLeft ]
             On  [ Input (unbox >> SetLeft >> dispatch) ]
         ] [ qList [
-                Props [ NoBorder true; InsetSeparator true ]
+                Props
+                    [ NoBorder true; InsetSeparator true; Link true ]
             ] [ qListHeader [] [ str "Left drawer" ]
-                qItem [] [ str "About" ]
-                qItem [] [ str "Counter" ]
+                menuItem 'A' About
+                menuItem 'C' Page.Counter
             ]
         ]
         page model.page

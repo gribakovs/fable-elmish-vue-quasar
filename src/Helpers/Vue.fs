@@ -38,6 +38,9 @@ type Prop =
     | NoBorder of bool
     | InsetSeparator of bool
     | Side of string
+    | Label of string
+    | Letter of char
+    | Link of bool
 
 type DataProp =
     | Style of CSSProp list
