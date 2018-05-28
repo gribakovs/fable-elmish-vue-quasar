@@ -1,5 +1,6 @@
 Fable.Core
 Fable.Elmish
+Fable.Elmish.Browser
 Fable.Elmish.Debugger
 Fable.Elmish.HMR
 Fable.Import.Browser

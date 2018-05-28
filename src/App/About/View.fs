@@ -1,8 +1,8 @@
-module App.About
+module About.View
 open Fable.Helpers.Vue
 open Fable.Helpers.Quasar
 
-let view =
+let root =
     div [] [
         qPageContainer [] [
             div [

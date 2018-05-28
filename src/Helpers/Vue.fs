@@ -10,6 +10,7 @@ type CSSProp =
     | BackgroundColor of string
     | Width of string
     | TextAlign of string
+    | TextDecoration of string
 
 type EventHandler =
     | Click of (obj -> unit)
@@ -17,33 +18,29 @@ type EventHandler =
 
 type ComponentKey = string
 
-// type ComponentOptions<'Props,'State> =
-//     | Components of obj
-//     | El of U2<Browser.Element, string>
-//     | Props of 'Props
-//     | Render of (Vue.CreateElement -> VNode.VNode)
-
 type Class = string * bool
 
 type Attr =
     | Id of string
+    | Href of string
 
 type Prop =
+    | Color of string
     | Dense of bool
     | Flat of bool
     | Icon of string
-    | Name of string
-    | View of string
-    | Round of bool
-    | Value of bool
-    | Inverted of bool
-    | Color of string
-    | NoBorder of bool
     | InsetSeparator of bool
-    | Side of string
+    | Inverted of bool
     | Label of string
     | Letter of char
     | Link of bool
+    | Name of string
+    | NoBorder of bool
+    | Round of bool
+    | Side of string
+    | Tag of string
+    | Value of bool
+    | View of string
 
 type DataProp =
     | Style of CSSProp list

@@ -2,6 +2,7 @@
 module Elmish.Vue.Program
 open Fable.Core
 open Fable.Core.JsInterop
+open Fable.Helpers
 open Fable.Helpers.Vue
 open Fable.Helpers.Quasar
 open Fable.Import
@@ -12,11 +13,10 @@ let [<Import("default","vue")>] vue: Vue.VueConstructorStatic = jsNative
 
 do vue.``use`` (
     quasar,
-    createObj [ "plugins" ==> createObj [ "Notify" ==> notify ] ]
+    createObj [
+        "plugins" ==> createObj [ "Notify" ==> notify ]
+    ]
 )
-
-
-// do vue.config.productionTip <- false
 
 let withVue element (program:Elmish.Program<_,_,_,_>) =
     let vm: Vue.VueConstructor<Props> =

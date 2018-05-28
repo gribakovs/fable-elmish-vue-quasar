@@ -1,40 +1,35 @@
-module App.Main
+module App.View
+open App.State
 open Elmish
+open Elmish.Browser.Navigation
+open Elmish.Browser.UrlParser
 open Elmish.Debug
 open Elmish.HMR
 open Elmish.Vue
 open Fable.Core
 open Fable.Helpers.Quasar
 open Fable.Helpers.Vue
-
-type Page = About | Counter
-type Model = { showLeft: bool; page: Page; counter: Counter.Model }
-type Msg = SetLeft of bool | Counter of Counter.Msg | SetPage of Page
+open Global
+open Types
 
 do JsInterop.importAll "./styles/app.styl"
 
-let init () =
-    { showLeft = true; page = About; counter = Counter.init () }
-
-let btn page dispatch =
-    qBtn [
-        Props [ Flat true ]
-        On [ Click <| fun _ -> SetPage page |> dispatch ]
-    ] [ string page |> str ]
-
-let view model dispatch =
+let root model dispatch =
     let menuItem letter page =
-        qItem [ On [ Click <| fun _ -> SetPage page |> dispatch ] ] [
-            qItemSide [ Props [ Letter letter ] ] []
+        qItem [
+            Attrs [ toHash page |> (+) "/" |> Href ]
+            Props [ Tag "a" ]
+            // Style [ TextDecoration "none" ]
+        ] [ qItemSide [ Props [ Letter letter ] ] []
             string page |> str
         ]
     let page = function
-        | About -> About.view
+        | About -> About.View.root
         | Page.Counter ->
-            Counter.view model.counter (Counter >> dispatch)
+            Counter.View.root model.counter (Msg.Counter >> dispatch)
     qLayout [
         Attrs [ Id "app" ] // WORKAROUND
-        Props [ View "lHR LpR lFf" ]
+        Props [ View "lHr LpR lFf" ]
     ] [ qLayoutHeader [] [
             qToolbar [] [
                 qBtn [
@@ -46,8 +41,6 @@ let view model dispatch =
                     ]
                 ] []
                 qToolbarTitle [] [ string model.page |> str ]
-                btn Page.About dispatch
-                btn Page.Counter dispatch
                 qSearch
                     [ Props [ Inverted true; Prop.Color "none" ] ] []
             ]
@@ -66,17 +59,14 @@ let view model dispatch =
         page model.page
     ]
 
-let update msg model =
-    match msg with
-    | SetLeft showLeft -> { model with showLeft = showLeft }
-    | Counter msg ->
-        { model with counter = Counter.update msg model.counter }
-    | SetPage page -> { model with page = page }
-
-do Program.mkSimple init update view
+// App
+Program.mkProgram init update root
+|> Program.toNavigable (parseHash pageParser) urlUpdate
+//-:cnd:noEmit
 #if DEBUG
-    |> Program.withHMR // doesn't
-    |> Program.withDebugger
+|> Program.withDebugger
+|> Program.withHMR
 #endif
-    |> Program.withVue "#app"
-    |> Program.run
+//+:cnd:noEmit
+|> Program.withVue "#app"
+|> Program.run

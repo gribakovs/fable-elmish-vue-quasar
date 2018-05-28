@@ -1,10 +1,7 @@
-module App.Counter
+module Counter.View
 open Fable.Helpers.Quasar
 open Fable.Helpers.Vue
-
-type Model = { count: int; total: int }
-type Msg = Decrease | Increase | Reset
-let init () = { count = 0; total = 0 }
+open Types
 
 let private butt color text dispatch msg =
     qBtn [
@@ -19,7 +16,7 @@ let private butt color text dispatch msg =
 let private number num =
     div [ Class [ "q-pa-lg", true ] ] [ string num |> str ]
 
-let view model dispatch =
+let root model dispatch =
     div [] [
         qPageContainer [] [
             // qToolbar [] [ qToolbarTitle [] [ str "Toolbar" ] ]
@@ -61,14 +58,3 @@ let view model dispatch =
             ]
         ]
     ]
-
-let update cmd model =
-    let count f = {
-        model with
-            count = f model.count 1
-            total = model.total + 1
-    }
-    match cmd with
-    | Decrease -> count (-)
-    | Increase -> count (+)
-    | Reset -> { model with count = 0; total = 0 }
